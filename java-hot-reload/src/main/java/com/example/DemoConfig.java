@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "demo")
 public class DemoConfig {
-    private String message;
-    private boolean flag;
-    private int version;
+    private String message = "default";
+    private boolean flag = false;
+    private int version = 1;
 
     public String getMessage() { return message; }
-    public void setMessage(String m) { message = m; }
+    public void setMessage(String message) { this.message = message; }
 
     public boolean isFlag() { return flag; }
-    public void setFlag(boolean f) { flag = f; }
+    public void setFlag(boolean flag) { this.flag = flag; }
 
     public int getVersion() { return version; }
-    public void setVersion(int v) { version = v; }
+    public void setVersion(int version) { this.version = version; }
 }
