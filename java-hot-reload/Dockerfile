@@ -1,7 +1,14 @@
-FROM eclipse-temurin:21-jdk
+# ---------- Build stage (Java 17) ----------
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
+WORKDIR /build
+COPY pom.xml .
+RUN mvn -B dependency:go-offline
+COPY src src
+RUN mvn clean package -DskipTests
+
+# ---------- Runtime stage (Java 17) ----------
+FROM eclipse-temurin:17-jre
 WORKDIR /app
-
-COPY target/hot-reload-1.0.0.jar app.jar
-
+COPY --from=builder /build/target/hot-reload-1.0.0.jar app.jar
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "app.jar"]
