@@ -8,7 +8,6 @@ import java.util.Map;
 @RestController
 @RefreshScope
 public class DemoController {
-
     private final DemoConfig config;
 
     public DemoController(DemoConfig config) {
