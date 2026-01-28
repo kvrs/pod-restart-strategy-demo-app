@@ -5,15 +5,17 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh,health
+        include: refresh,health,info
 
 spring:
   cloud:
     kubernetes:
+      enabled: true
       reload:
         enabled: true
-        strategy: refresh
-        mode: event
+        strategy: refresh  # refresh Spring context (no pod restart)
+        mode: event        # watch K8s events
       config:
+        enabled: true
         name: java-config
         namespace: ${POD_NAMESPACE:config-hot-reload}
