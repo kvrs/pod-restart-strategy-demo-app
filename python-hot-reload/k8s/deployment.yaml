@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: py-hot-reload
+  namespace: config-hot-reload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-hot-reload
+  template:
+    metadata:
+      labels:
+        app: py-hot-reload
+    spec:
+      containers:
+        - name: python
+          image: local/python-hot-reload:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: py-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: py-hot-reload-svc
+  namespace: config-hot-reload
+spec:
+  selector:
+    app: py-hot-reload
+  ports:
+    - port: 80
+      targetPort: 8080

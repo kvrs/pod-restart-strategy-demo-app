@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: py-config
+  namespace: config-hot-reload
+data:
+  config.yaml: |
+    message: "Hello from Python ConfigMap!"
+    flag: true
+    version: 1

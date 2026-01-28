@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: java-config
+  namespace: config-hot-reload
+data:
+  application.yaml: |
+    demo:
+      message: "Hello from Java ConfigMap!"
+      flag: true
+      version: 1
