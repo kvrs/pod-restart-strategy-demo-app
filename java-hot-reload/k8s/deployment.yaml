@@ -18,6 +18,8 @@ spec:
         - name: java-hot-reload
           image: local/java-hot-reload:latest
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
           env:
             - name: POD_NAMESPACE
               valueFrom:
