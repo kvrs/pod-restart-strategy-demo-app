@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-demo
+  template:
+    metadata:
+      labels:
+        app: node-demo
+    spec:
+      containers:
+      - name: node-app
+        image: node-config-demo:v1
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: demo-config
