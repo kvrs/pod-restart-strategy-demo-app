@@ -1,9 +1,7 @@
 package com.example.hotreload;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-@Component
 @ConfigurationProperties(prefix = "demo")
 public class DemoConfig {
     private String message = "default";
