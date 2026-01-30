@@ -1,21 +1,21 @@
 server:
   port: 8081
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: refresh,health,info
-
 spring:
   cloud:
     kubernetes:
       enabled: true
       reload:
         enabled: true
-        strategy: refresh  # refresh Spring context (no pod restart)
-        mode: event        # watch K8s events
+        strategy: refresh
+        mode: event
       config:
         enabled: true
         name: java-config
         namespace: ${POD_NAMESPACE:config-hot-reload}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
