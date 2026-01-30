@@ -4,9 +4,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "demo")
 public class DemoConfig {
-    private String message = "default";
-    private boolean flag = false;
-    private int version = 1;
+
+    private String message;
+    private boolean flag;
+    private int version;
 
     public String getMessage() { return message; }
     public void setMessage(String message) { this.message = message; }
